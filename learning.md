@@ -31,3 +31,30 @@ on:
 - `*` (Single asterisk) Doesn't allow furthur slashes in the branch name.
 
 - `**` is used to allow furthur slashes in the branch name
+
+
+## Paths-ignore or paths
+
+```
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+
+  workflow_dispatch:
+  push:
+    branches: 
+      - main 
+      - dev # dev-new dev-new-button
+      - 'feat/**' #feat/new feat/new/button
+    
+    paths-ignore:
+      - '.github/workflows/*'
+```
+- paths-ignore will ignore the files and will not run the workflow if those files are changed.
+
+- The workflow won’t run if you only modified workflow files inside .github/workflows/.
+
+- **paths** will run the workflow if changes are made to the particular path.
